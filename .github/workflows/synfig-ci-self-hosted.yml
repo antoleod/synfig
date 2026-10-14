@@ -1,41 +1,11 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Synfig CI (Self-Hosted)
-
-# Controls when the action will run.
+name: synfig-ci-self-hosted.yml (DISABLED - billing protection)
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
- 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  contents: read
 jobs:
-  build-osx:
-    runs-on: osx-10.9
-    continue-on-error: false
-    name: "Synfig Studio (OSX package)"
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  disabled:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
     steps:
-      - name: "Synfig Studio (OSX package)"
-        run: |
-          ../../../morevna-builds.osx/build-synfig.sh https://github.com/$GITHUB_REPOSITORY $GITHUB_REF
-  build-source-tarballs:
-    runs-on: Linux
-    continue-on-error: false
-    name: "Synfig Studio (source tarballs)"
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: "Fix permissions on build folder"
-        run: |
-          chmod -R u+w ./
-      - uses: actions/checkout@v4
-      - name: "Synfig Studio (source tarballs)"
-        run: |
-          ./autobuild/synfigstudio-release.sh
+      - run: echo 'Disabled by owner request'
